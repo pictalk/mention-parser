@@ -5,7 +5,7 @@
   "main": "lib/mention-parser.js",
   "types": "lib/mention-parser.d.ts",
   "scripts": {
-    "build": "rm -Rf lib && tsc && flow/mv.sh",
+    "build": "rm -Rf lib && tsc",
     "bench": "node bench/index.js",
     "test:update": "jest --verbose -u",
     "test": "jest --verbose",

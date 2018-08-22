@@ -1,5 +1,5 @@
 // @flow
-import { Result } from "safe-types";
+import { type Result } from "safe-types";
 
 type MapFunc<T, U> = (t: T) => U;
 
