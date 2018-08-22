@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Mention Parser should error when a tag is never closed: invalid token inside tag 1`] = `1`;
+
+exports[`Mention Parser should error when a tag is never closed: invalid token inside tag 2`] = `1`;
+
+exports[`Mention Parser should error when a tag is never closed: tag closed before value 1`] = `1`;
+
+exports[`Mention Parser should error when a tag is never closed: unclosed tag at end of string 1`] = `2`;
+
+exports[`Mention Parser should error when a tag is never closed: unclosed tag in the middle of string 1`] = `2`;
+
+exports[`Mention Parser should work 1`] = `
+Array [
+  Object {
+    "type": "text",
+    "value": "
+Hello world! My best friend is ",
+  },
+  Object {
+    "type": "mention",
+    "value": "abcdefg123456",
+  },
+  Object {
+    "type": "text",
+    "value": ", and together we love
+",
+  },
+  Object {
+    "type": "hashtag",
+    "value": "coding",
+  },
+  Object {
+    "type": "text",
+    "value": ".
+    ",
+  },
+]
+`;

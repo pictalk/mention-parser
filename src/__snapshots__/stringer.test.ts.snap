@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Mention Stringer should work with async resolvers: Custom Async 1`] = `"This should stringify an async message with any set of tags. If I mention Frankie Bagnardi, I should see his name. Maybe even some <html>raw html</html>?"`;
+
+exports[`Mention Stringer should work: Custom 1`] = `"This should stringify a message with any set of tags. If I mention Alex Regan, I should see his name. Maybe even some <html>raw html</html>?"`;
+
+exports[`Mention Stringer should work: Default 1`] = `"This should stringify a message with any set of tags. If I mention 37a8733e1718dc73d69f53ac, I should see his name. Maybe even some raw html?"`;
