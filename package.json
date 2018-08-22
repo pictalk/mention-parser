@@ -1,6 +1,6 @@
 {
   "name": "@pictalk/mention-parser",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "lib/mention-parser.js",
   "types": "lib/mention-parser.d.ts",
