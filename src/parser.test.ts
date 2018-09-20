@@ -1,6 +1,6 @@
 import * as Tags from "./parser";
 
-const stringify = x => JSON.stringify(x, null, 2);
+const stringify = (x: any) => JSON.stringify(x, null, 2);
 
 describe("Mention Parser", async () => {
   it("should work", async () => {
@@ -19,7 +19,7 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
     let r = Tags.parse(text);
 
     let tokens = r.unwrap();
-    let tag = tokens.find(t => t.type == "hashtag");
+    let tag = tokens.find(t => t.type == "hashtag")!;
     expect(tag).toBeDefined();
     expect(tag.value).toBe("💩");
 
@@ -27,7 +27,7 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
     r = Tags.parse(text);
 
     tokens = r.unwrap();
-    tag = tokens.find(t => t.type == "💩");
+    tag = tokens.find(t => t.type == "💩")!;
     expect(tag).toBeDefined();
     expect(tag.type).toBe("💩");
   });
@@ -47,7 +47,7 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
 
     for (let text of tests) {
       let tokens = Tags.parse(text).unwrap();
-      let tag = tokens.find(t => t.type == type);
+      let tag = tokens.find(t => t.type == type)!;
       expect(tag).toBeDefined();
       expect(tag.type).toBe(type);
       expect(tag.value).toBe(value);
@@ -70,7 +70,7 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
 
     for (let { text, type, value } of tests) {
       let tokens = Tags.parse(text).unwrap();
-      let tag = tokens.find(t => t.type == type);
+      let tag = tokens.find(t => t.type == type)!;
       expect(tag).toBeDefined();
       expect(tag.type).toBe(type);
       expect(tag.value).toBe(value);
@@ -131,7 +131,7 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
         console.error(err);
       });
       let tokens = r.unwrap();
-      let tag = tokens.find(t => t.type == type);
+      let tag = tokens.find(t => t.type == type)!;
       expect(tag).toBeDefined();
       expect(tag.type).toBe(type);
       expect(tag.value).toBe(value);
