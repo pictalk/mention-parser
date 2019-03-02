@@ -32,16 +32,16 @@
   },
   "devDependencies": {
     "@types/benchmark": "^1.0.31",
-    "@types/jest": "^23.3.2",
+    "@types/jest": "^23.3.14",
     "benchmark": "^2.1.4",
     "flow-bin": "^0.79.1",
     "jest": "^23.6.0",
-    "prettier": "^1.14.3",
+    "prettier": "^1.16.4",
     "standard-version": "^4.4.0",
-    "ts-jest": "^23.10.0",
-    "typescript": "^3.0.3"
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "safe-types": "^4.6.1"
+    "safe-types": "^4.17.0"
   }
 }
