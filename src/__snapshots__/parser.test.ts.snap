@@ -37,3 +37,7 @@ Hello world! My best friend is ",
   },
 ]
 `;
+
+exports[`should error when tag does not match allowed tags case sensitive error for 'hashtag': case sensitive error for 'hashtag' 1`] = `3`;
+
+exports[`should error when tag does not match allowed tags unknown tag 'hash': unknown tag 'hash' 1`] = `3`;

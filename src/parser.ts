@@ -35,6 +35,11 @@ export enum ErrorCode {
    * but does not receive the correct sequence of tokens.
    */
   UnclosedTag,
+  /**
+   * Type error when a tag is matched that does not exist in a given
+   * set of allowed tags.
+   */
+  UnrecognizedTag,
 }
 
 export interface ParseError {
@@ -42,7 +47,10 @@ export interface ParseError {
   message: string;
 }
 
-export function parse(message: string): Result<Tag[], ParseError> {
+export function parse<T extends string = string>(
+  message: string,
+  tagsAllowed?: Set<T>,
+): Result<Tag<T>[], ParseError> {
   const tags: Tag[] = [];
   let state = State.Text;
   let type: string = TagType.Text;
@@ -122,6 +130,12 @@ export function parse(message: string): Result<Tag[], ParseError> {
         if (char === Token.Sep) {
           state = State.Value;
           type = type.trim();
+          if (tagsAllowed && !tagsAllowed.has(type as any)) {
+            return Err({
+              code: ErrorCode.UnrecognizedTag,
+              message: `tag does not match any allowed tags`,
+            });
+          }
           break;
         }
 

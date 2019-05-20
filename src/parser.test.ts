@@ -186,3 +186,43 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
     }
   });
 });
+
+describe("should error when tag does not match allowed tags", () => {
+  type MyTags = "hashtag" | "mention";
+  const tagsAllowed = new Set<MyTags>(["hashtag", "mention"]);
+
+  let tests = [
+    {
+      label: "unknown tag 'hash'",
+      text: `Let's burn this {{hash:parser}} to the ground!`,
+      tagsAllowed,
+    },
+    {
+      label: "case sensitive error for 'hashtag'",
+      text: `Let's burn this {{hashTag:parser}} to the ground!`,
+      tagsAllowed,
+    },
+  ];
+
+  for (let { text, label, tagsAllowed } of tests) {
+    it(label, () => {
+      let r = Tags.parse(text, tagsAllowed);
+      if (r.is_ok()) {
+        console.error(`${label}:`, stringify(text));
+        console.error(stringify(r));
+      }
+      expect(r.is_err()).toBe(true);
+      let err = r.unwrap_err();
+
+      // Ensure we provide a stable error shape
+      expect(err.code).toBeDefined();
+      expect(err.message).toBeDefined();
+      // Ensure we provide a stable type
+      expect(typeof err.message).toBe("string");
+      expect(typeof err.code).toBe("number");
+      // Ensure we know if our error codes change.
+      // Consumers may rely on specific codes.
+      expect(err.code).toMatchSnapshot(label);
+    });
+  }
+});
