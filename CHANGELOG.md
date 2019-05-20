@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/pictalk/mention-parser/compare/v2.1.0...v2.2.0) (2019-05-20)
+
+
+### Bug Fixes
+
+* unsafe type constraints ([2bb3016](https://github.com/pictalk/mention-parser/commit/2bb3016))
+
+
+### Features
+
+* optionally validate against a finite set of tags ([d6bac92](https://github.com/pictalk/mention-parser/commit/d6bac92))
+
+
+
 ## [2.1.0](https://github.com/pictalk/mention-parser/compare/v2.0.4...v2.1.0) (2019-05-20)
 
 
