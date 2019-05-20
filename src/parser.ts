@@ -197,7 +197,7 @@ export function parse<T extends string = string>(
     tags.push({ type, value });
   }
 
-  return Ok(tags);
+  return Ok(tags) as any;
 }
 
 function expectNever(_: never, msg = "unexpected code path"): never {
