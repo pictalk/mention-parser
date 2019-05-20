@@ -43,8 +43,8 @@ Object.keys(users).reduce((db, k) => {
 const sleep: (ms: number) => Promise<void> = ms =>
   new Promise(r => setTimeout(r, ms));
 
-describe("Mention Stringer", async () => {
-  it("should work", async () => {
+describe("Mention Stringer", () => {
+  it("should work", () => {
     let r = Tags.parse(
       [
         `This should stringify a message with any set of {{hashtag:tags}}.`,

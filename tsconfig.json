@@ -19,6 +19,8 @@
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
 
     /* Additional Checks */
     "noUnusedLocals": true,
@@ -41,5 +43,5 @@
     "preserveConstEnums": false
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "lib/**/*", "src/**/*.test.ts"]
+  "exclude": ["node_modules", "lib/**/*", "esm/**/*", "src/**/*.test.ts"]
 }

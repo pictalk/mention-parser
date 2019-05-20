@@ -3,9 +3,13 @@
   "version": "2.0.4",
   "description": "",
   "main": "lib/mention-parser.js",
+  "module": "esm/mention-parser.js",
   "types": "lib/mention-parser.d.ts",
   "scripts": {
-    "build": "rm -Rf lib && tsc",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.json",
+    "prebuild": "rm -Rf lib esm",
+    "build": "npm run build:esm && npm run build:cjs",
     "bench": "node bench/index.js",
     "test:update": "jest --verbose -u",
     "test": "jest --verbose",
@@ -32,16 +36,16 @@
   },
   "devDependencies": {
     "@types/benchmark": "^1.0.31",
-    "@types/jest": "^23.3.14",
+    "@types/jest": "^24.0.13",
     "benchmark": "^2.1.4",
-    "flow-bin": "^0.79.1",
-    "jest": "^23.6.0",
-    "prettier": "^1.16.4",
-    "standard-version": "^4.4.0",
-    "ts-jest": "^23.10.5",
-    "typescript": "^3.3.3333"
+    "flow-bin": "^0.98.1",
+    "jest": "^24.8.0",
+    "prettier": "^1.17.1",
+    "standard-version": "^6.0.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
   },
   "dependencies": {
-    "safe-types": "^4.17.0"
+    "safe-types": "^4.18.2"
   }
 }

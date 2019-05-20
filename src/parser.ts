@@ -37,7 +37,7 @@ export enum ErrorCode {
   UnclosedTag,
 }
 
-interface ParseError {
+export interface ParseError {
   code: ErrorCode;
   message: string;
 }

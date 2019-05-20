@@ -2,8 +2,8 @@ import * as Tags from "./parser";
 
 const stringify = (x: any) => JSON.stringify(x, null, 2);
 
-describe("Mention Parser", async () => {
-  it("should work", async () => {
+describe("Mention Parser", () => {
+  it("should work", () => {
     let r = Tags.parse(`
 Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
 {{hashtag:coding}}.
@@ -14,7 +14,7 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
     expect(r.unwrap()).toMatchSnapshot();
   });
 
-  it("should work on tags with emoji types or values", async () => {
+  it("should work on tags with emoji types or values", () => {
     let text = `That moment when... {{hashtag:💩}}`;
     let r = Tags.parse(text);
 
@@ -32,7 +32,7 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
     expect(tag.type).toBe("💩");
   });
 
-  it("should trim spaces in tag types and values", async () => {
+  it("should trim spaces in tag types and values", () => {
     let type = "foo";
     let value = "bar";
     let tests = [
@@ -54,7 +54,7 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
     }
   });
 
-  it("should work with spaces inside tag types and values", async () => {
+  it("should work with spaces inside tag types and values", () => {
     let tests = [
       {
         type: "some type",
@@ -77,7 +77,7 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
     }
   });
 
-  it("should not trip up on curly brace tokens that aren't mustache tags", async () => {
+  it("should not trip up on curly brace tokens that aren't mustache tags", () => {
     let tests = [
       {
         type: "hashtag",
@@ -141,7 +141,7 @@ Hello world! My best friend is {{mention:abcdefg123456}}, and together we love
     }
   });
 
-  it("should error when a tag is never closed", async () => {
+  it("should error when a tag is never closed", () => {
     let tests = [
       {
         label: "unclosed tag at end of string",

@@ -1,5 +1,5 @@
 export { Tag } from "./shared";
-export { ErrorCode, parse } from "./parser";
+export { ErrorCode, parse, ParseError } from "./parser";
 export {
   stringify,
   stringifyAsync,
