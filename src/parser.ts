@@ -55,6 +55,7 @@ export function parse<T extends string = string>(
   let state = State.Text;
   let type: string = TagType.Text;
   let value = "";
+  let length = 0;
 
   for (let char of Array.from(message)) {
     switch (state) {
@@ -65,6 +66,7 @@ export function parse<T extends string = string>(
           break;
         }
 
+        length++;
         value += char;
         break;
 
@@ -74,6 +76,7 @@ export function parse<T extends string = string>(
           state = State.Text;
           // Return the original '{' back to the value buffer
           value += Token.Open + char;
+          length += 2;
           break;
         }
 
@@ -82,12 +85,13 @@ export function parse<T extends string = string>(
 
         // Flush the current tag.
         if (value.length) {
-          tags.push({ type, value });
+          tags.push({ type, value, length });
         }
 
         // New tag
         type = "";
         value = "";
+        length = 0;
         break;
 
       case State.Type:
@@ -108,11 +112,12 @@ export function parse<T extends string = string>(
             // that belong to the previous text tag.
             let tail_tag = tags[tags.length - 1];
             if (!tail_tag || tail_tag.type !== TagType.Text) {
-              tags.push({ type: TagType.Text, value: Token.Open });
+              tags.push({ type: TagType.Text, value: Token.Open, length: 1 });
               break;
             }
 
             tail_tag.value += Token.Open;
+            tail_tag.length++;
             break;
           }
         }
@@ -156,9 +161,15 @@ export function parse<T extends string = string>(
         if (char === Token.Close) {
           state = State.Closing;
           value = value.trim();
+          // since we trim, we'll count graphemes with the final value.
+          let iter = value[Symbol.iterator]();
+          while (!iter.next().done) {
+            length++;
+          }
           break;
         }
 
+        // Skip counting until the close since whitespace is ignored.
         value += char;
         break;
 
@@ -174,10 +185,11 @@ export function parse<T extends string = string>(
 
         state = State.Text;
 
-        tags.push({ type, value });
+        tags.push({ type, value, length });
         // New text tag buffer
         type = TagType.Text;
         value = "";
+        length = 0;
         break;
 
       default:
@@ -194,7 +206,7 @@ export function parse<T extends string = string>(
 
   // Flush the current tag.
   if (value.length) {
-    tags.push({ type, value });
+    tags.push({ type, value, length });
   }
 
   return Ok(tags) as any;

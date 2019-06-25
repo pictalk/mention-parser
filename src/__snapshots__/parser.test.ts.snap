@@ -13,24 +13,29 @@ exports[`Mention Parser should error when a tag is never closed: unclosed tag in
 exports[`Mention Parser should work 1`] = `
 Array [
   Object {
+    "length": 32,
     "type": "text",
     "value": "
 Hello world! My best friend is ",
   },
   Object {
+    "length": 13,
     "type": "mention",
     "value": "abcdefg123456",
   },
   Object {
+    "length": 23,
     "type": "text",
     "value": ", and together we love
 ",
   },
   Object {
+    "length": 6,
     "type": "hashtag",
     "value": "coding",
   },
   Object {
+    "length": 6,
     "type": "text",
     "value": ".
     ",
